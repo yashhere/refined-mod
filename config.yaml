@@ -1,0 +1,43 @@
+theme:
+  - hugo-debugprint
+  - hugo-atom-feed
+  - hugo-jf2
+  - hugo-search-fuse-js
+  - refined
+
+# Default values of custom site.Params
+Params:
+  # https://github.com/tummychow/lanyon-hugo/issues/2#issuecomment-253274278
+  # Go date formats: https://golang.org/pkg/time/#pkg-constants
+  dateform: "Mon Jan 2, 2006"
+
+  themecolorbase: blue # Valid values: "red", "orange", "yellow", "green", "cyan", "blue", "magenta", "brown"
+
+  # Set favicons to true only if the following files are present in the project assets/ dir:
+  # - safari-pinned-tab.svg
+  # - manifest.json
+  # - favicon-16x16.png
+  # - favicon-32x32.png
+  # - apple-touch-icon.png
+  favicons: false
+
+  # These inline CSS files have to live in layouts/partials/.
+  # custom_inline_css:
+  #   - css/github_chroma.css
+  #   - css/improvements.css
+
+  css_lazy_load: false
+
+  fontawesome:
+    style: fal # Valid values: "fas" (Solid), "far" (Regular), "fal" (Light), "fab" (Brands)
+
+  urls:
+    refined: "https://gitlab.com/kaushalmodi/hugo-theme-refined"
+    refined_modified: "https://github.com/yashhere/refined-mod"
+    hugo: "https://github.com/gohugoio/hugo"
+  # prefetch:
+  #   fonts:
+  #     - /fonts/libre-baskerville/2012/subset/LibreBaskerville-Regular.woff2
+  #     - /fonts/iosevka/1.14.1/subset/iosevka-ss08-regular.woff2
+  #     - /fonts/linux-libertine/5.3.0/subset/LinBiolinum_Rah.woff2
+  #     - /fonts/source-sans-pro/2.020R-ro-1.075R-it/subset/SourceSansPro-Regular.woff2

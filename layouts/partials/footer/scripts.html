@@ -1,0 +1,68 @@
+{{ $main := resources.Get "js/main.js" }}
+{{ $jqeury := resources.Get "js/libs/jquery/3.4.1/jquery.js" }}
+{{ $navbarJS := resources.Get "js/responsive-nav-orig.js" }}
+{{ $faJS := resources.Get "js/libs/fa/fontawesome-all.js"}}
+{{ $mathjaxJS := resources.Get "js/libs/mathjax/2.7.3/mathjax.js" }}
+{{ $mathjaxConfig := resources.Get "js/mathjax-config.js" }}
+{{ $fragmentionJS := resources.Get "js/libs/fragmentions/wrapper.js" }}
+{{ $photoswipeJS := resources.Get "js/load-photoswipe.js" }}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js" integrity="sha256-PWHOlUzc96pMc8ThwRIXPn8yH4NOLu42RQ0b9SpnpFk=" crossorigin="anonymous"></script>
+
+{{ if .Params.mathjax }}
+    {{ if site.IsServer }}
+        {{ $mathjaxJS := slice $jqeury $navbarJS $faJS $mathjaxJS $mathjaxConfig $fragmentionJS $photoswipeJS $main | resources.Concat "js/global.js" }}
+        {{ $globalMJ_JS := $mathjaxJS }}
+
+        <!-- Enable HTTP/2 Push -->
+        <link rel="preload" href="{{ $globalMJ_JS.RelPermalink }}?{{ now.Unix }}" as="script">
+        <script src="{{ $globalMJ_JS.RelPermalink }}?{{ now.Unix }}"></script>
+    {{ else }}
+        {{ $mathjaxJS := slice $jqeury $navbarJS $faJS $mathjaxJS $mathjaxConfig $fragmentionJS $photoswipeJS $main | resources.Concat "js/global.js" }}
+        {{ $globalMJ_JS := $mathjaxJS | resources.Minify | resources.Fingerprint }}
+
+        <!-- Enable HTTP/2 Push -->
+        <link rel="preload" href="{{ $globalMJ_JS.RelPermalink }}" as="script" integrity="{{ $globalMJ_JS.Data.Integrity }}">
+        <script src="{{ $globalMJ_JS.RelPermalink }}" integrity="{{ $globalMJ_JS.Data.Integrity }}"></script>
+    {{ end }}
+
+{{ else }}
+    {{ if site.IsServer }}
+        {{ $defaultJS := slice $jqeury $navbarJS $faJS $fragmentionJS $photoswipeJS $main | resources.Concat "js/global.js" }}
+        {{ $globalJS := $defaultJS }}
+
+        <!-- Enable HTTP/2 Push -->
+        <link rel="preload" href="{{ $globalJS.RelPermalink }}?{{ now.Unix }}" as="script">
+        <script src="{{ $globalJS.RelPermalink }}?{{ now.Unix }}"></script>
+    {{ else }}
+        {{ $defaultJS := slice $jqeury $navbarJS $faJS $fragmentionJS $photoswipeJS $main | resources.Concat "js/global.js" }}
+        {{ $globalJS := $defaultJS | resources.Minify | resources.Fingerprint }}
+
+        <!-- Enable HTTP/2 Push -->
+        <link rel="preload" href="{{ $globalJS.RelPermalink }}" as="script" integrity="{{ $globalJS.Data.Integrity }}">
+        <script src="{{ $globalJS.RelPermalink }}" integrity="{{ $globalJS.Data.Integrity }}"></script>
+    {{ end }}
+{{ end }}
+
+{{ $redirection := resources.Get "js/redirection.js" | minify | fingerprint}}
+<link rel="preload" href="{{ $redirection.RelPermalink }}" as="script">
+
+{{ range site.Params.custom_js }}
+    {{ $asset := . }}
+    {{ $resource := resources.Get $asset }}
+        {{ if site.IsServer }}
+            <link rel="preload" href="{{ $resource.RelPermalink }}?{{ now.Unix }}" as="script">
+            <script src="{{ $resource.RelPermalink }}?{{ now.Unix }}"></script>
+        {{ else }}
+            {{ $js := $resource | minify | fingerprint }}
+            <link rel="preload" href="{{ $js.RelPermalink }}" as="script">
+            <script src="{{ $js.RelPermalink }}"></script>
+        {{ end }}
+{{ end }}
+
+<!-- Init responsive-nav.js -->
+<!-- https://report-uri.com/home/hash/
+     'sha256-AICaU7ez1zEahkwGOinOvyDtJHKvnJAO607ClgXh4xg='
+-->
+<script type="application/javascript">var nav=responsiveNav("#nav");</script>
