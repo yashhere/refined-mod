@@ -43,15 +43,7 @@
 <!-- Enable HTTP/2 Push -->
 <link rel="preload" href="{{ $fragmentioner_css.RelPermalink }}" as="style">
 
-{{ $gallery_css := resources.Get "css/hugo-easy-gallery.css" | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $gallery_css.RelPermalink }}">
-<!-- Enable HTTP/2 Push -->
-<link rel="preload" href="{{ $gallery_css.RelPermalink }}" as="style">
-
-{{ $photoswipe_css := resources.Get "css/photoswipe.css" | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $photoswipe_css.RelPermalink }}">
-<!-- Enable HTTP/2 Push -->
-<link rel="preload" href="{{ $photoswipe_css.RelPermalink }}" as="style">
+<!-- check photoswipe css in load-photoswipe shortcode -->
 
 {{ $highlight_css := resources.Get "css/github_croma.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $highlight_css.RelPermalink }}">

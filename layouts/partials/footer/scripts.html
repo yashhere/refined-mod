@@ -5,21 +5,19 @@
 {{ $mathjaxJS := resources.Get "js/libs/mathjax/2.7.3/mathjax.js" }}
 {{ $mathjaxConfig := resources.Get "js/mathjax-config.js" }}
 {{ $fragmentionJS := resources.Get "js/libs/fragmentions/wrapper.js" }}
-{{ $photoswipeJS := resources.Get "js/load-photoswipe.js" }}
+{{ $photoswipeJS := resources.Get "js/load-photoswipe.js" | minify | fingerprint}}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js" integrity="sha256-PWHOlUzc96pMc8ThwRIXPn8yH4NOLu42RQ0b9SpnpFk=" crossorigin="anonymous"></script>
 
 {{ if .Params.mathjax }}
     {{ if site.IsServer }}
-        {{ $mathjaxJS := slice $jqeury $navbarJS $faJS $mathjaxJS $mathjaxConfig $fragmentionJS $photoswipeJS $main | resources.Concat "js/global.js" }}
+        {{ $mathjaxJS := slice $jqeury $navbarJS $faJS $mathjaxJS $mathjaxConfig $fragmentionJS  $main | resources.Concat "js/global.js" }}
         {{ $globalMJ_JS := $mathjaxJS }}
 
         <!-- Enable HTTP/2 Push -->
         <link rel="preload" href="{{ $globalMJ_JS.RelPermalink }}?{{ now.Unix }}" as="script">
         <script src="{{ $globalMJ_JS.RelPermalink }}?{{ now.Unix }}"></script>
     {{ else }}
-        {{ $mathjaxJS := slice $jqeury $navbarJS $faJS $mathjaxJS $mathjaxConfig $fragmentionJS $photoswipeJS $main | resources.Concat "js/global.js" }}
+        {{ $mathjaxJS := slice $jqeury $navbarJS $faJS $mathjaxJS $mathjaxConfig $fragmentionJS  $main | resources.Concat "js/global.js" }}
         {{ $globalMJ_JS := $mathjaxJS | resources.Minify | resources.Fingerprint }}
 
         <!-- Enable HTTP/2 Push -->
@@ -29,14 +27,14 @@
 
 {{ else }}
     {{ if site.IsServer }}
-        {{ $defaultJS := slice $jqeury $navbarJS $faJS $fragmentionJS $photoswipeJS $main | resources.Concat "js/global.js" }}
+        {{ $defaultJS := slice $jqeury $navbarJS $faJS $fragmentionJS  $main | resources.Concat "js/global.js" }}
         {{ $globalJS := $defaultJS }}
 
         <!-- Enable HTTP/2 Push -->
         <link rel="preload" href="{{ $globalJS.RelPermalink }}?{{ now.Unix }}" as="script">
         <script src="{{ $globalJS.RelPermalink }}?{{ now.Unix }}"></script>
     {{ else }}
-        {{ $defaultJS := slice $jqeury $navbarJS $faJS $fragmentionJS $photoswipeJS $main | resources.Concat "js/global.js" }}
+        {{ $defaultJS := slice $jqeury $navbarJS $faJS $fragmentionJS  $main | resources.Concat "js/global.js" }}
         {{ $globalJS := $defaultJS | resources.Minify | resources.Fingerprint }}
 
         <!-- Enable HTTP/2 Push -->
@@ -45,20 +43,30 @@
     {{ end }}
 {{ end }}
 
+{{ if ($.Scratch.Get "photoswipeloaded") }}
+    <link rel="preload" href="{{ $photoswipeJS.RelPermalink }}" as="script">
+    <script src="{{ $photoswipeJS.RelPermalink }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js" integrity="sha256-PWHOlUzc96pMc8ThwRIXPn8yH4NOLu42RQ0b9SpnpFk=" crossorigin="anonymous"></script>
+{{ end }}
+
 {{ $redirection := resources.Get "js/redirection.js" | minify | fingerprint}}
 <link rel="preload" href="{{ $redirection.RelPermalink }}" as="script">
+<script src="{{ $redirection.RelPermalink }}"></script>
 
-{{ range site.Params.custom_js }}
-    {{ $asset := . }}
-    {{ $resource := resources.Get $asset }}
-        {{ if site.IsServer }}
-            <link rel="preload" href="{{ $resource.RelPermalink }}?{{ now.Unix }}" as="script">
-            <script src="{{ $resource.RelPermalink }}?{{ now.Unix }}"></script>
-        {{ else }}
-            {{ $js := $resource | minify | fingerprint }}
-            <link rel="preload" href="{{ $js.RelPermalink }}" as="script">
-            <script src="{{ $js.RelPermalink }}"></script>
-        {{ end }}
+{{ with site.Params.custom_js }}
+    {{ range site.Params.custom_js }}
+        {{ $asset := . }}
+        {{ $resource := resources.Get $asset }}
+            {{ if site.IsServer }}
+                <link rel="preload" href="{{ $resource.RelPermalink }}?{{ now.Unix }}" as="script">
+                <script src="{{ $resource.RelPermalink }}?{{ now.Unix }}"></script>
+            {{ else }}
+                {{ $js := $resource | minify | fingerprint }}
+                <link rel="preload" href="{{ $js.RelPermalink }}" as="script">
+                <script src="{{ $js.RelPermalink }}"></script>
+            {{ end }}
+    {{ end }}
 {{ end }}
 
 <!-- Init responsive-nav.js -->
