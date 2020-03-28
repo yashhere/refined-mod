@@ -141,6 +141,7 @@
     font-family: 'Iosevka';
     src: url('../fonts/iosevka/1.14.1/subset/iosevka-ss08-regular.woff2') format('woff2'),
         url('../fonts/iosevka/1.14.1/subset/iosevka-ss08-regular.woff') format('woff');
+    font-display: swap;
 }
 
 @font-face {
@@ -148,20 +149,23 @@
     src: url('../fonts/iosevka/1.14.1/subset/iosevka-ss08-bold.woff2') format('woff2'),
         url('../fonts/iosevka/1.14.1/subset/iosevka-ss08-bold.woff') format('woff');
     font-weight: bold;
+    font-display: swap;
 }
 
 /* @font-face { */
 /*     font-family: 'Iosevka'; */
 /*     src: url('../fonts/iosevka/1.14.1/subset/iosevka-ss08-italic.woff2') format('woff2'), */
 /*          url('../fonts/iosevka/1.14.1/subset/iosevka-ss08-italic.woff') format('woff'); */
-/*     font-style: italic; */
+/*     font-style: italic;
+       font-display: swap;*/
 /* } */
 /* @font-face { */
 /*     font-family: 'Iosevka'; */
 /*     src: url('../fonts/iosevka/1.14.1/subset/iosevka-ss08-bolditalic.woff2') format('woff2'), */
 /*          url('../fonts/iosevka/1.14.1/subset/iosevka-ss08-bolditalic.woff') format('woff'); */
 /*     font-weight: bold; */
-/*     font-style: italic; */
+/*     font-display: swap;
+        font-style: italic; */
 /* } */
 
 /* *** Linux Biolinum */
@@ -169,6 +173,7 @@
     font-family: 'Linux Biolinum';
     src: url('../fonts/linux-libertine/5.3.0/subset/LinBiolinum_Rah.woff2') format('woff2'),
         url('../fonts/linux-libertine/5.3.0/subset/LinBiolinum_Rah.woff') format('woff');
+    font-display: swap;
 }
 
 @font-face {
@@ -176,6 +181,7 @@
     src: url('../fonts/linux-libertine/5.3.0/subset/LinBiolinum_RBah.woff2') format('woff2'),
         url('../fonts/linux-libertine/5.3.0/subset/LinBiolinum_RBah.woff') format('woff');
     font-weight: bold;
+    font-display: swap;
 }
 
 /* @font-face { */
@@ -190,6 +196,7 @@
     font-family: 'Source Sans Pro';
     src: url('../fonts/source-sans-pro/2.020R-ro-1.075R-it/subset/SourceSansPro-Regular.woff2') format('woff2'),
         url('../fonts/source-sans-pro/2.020R-ro-1.075R-it/subset/SourceSansPro-Regular.woff') format('woff');
+    font-display: swap;
 }
 
 /* @font-face { */
@@ -217,6 +224,7 @@
     font-family: 'Merriweather';
     src: url('../fonts/merriweather/2.002/subset/Merriweather-Regular.woff2') format('woff2'),
         url('../fonts/merriweather/2.002/subset/Merriweather-Regular.woff') format('woff');
+    font-display: swap;
 }
 
 @font-face {
@@ -224,6 +232,7 @@
     src: url('../fonts/merriweather/2.002/subset/Merriweather-Bold.woff2') format('woff2'),
         url('../fonts/merriweather/2.002/subset/Merriweather-Bold.woff') format('woff');
     font-weight: bold;
+    font-display: swap;
 }
 
 @font-face {
@@ -231,6 +240,7 @@
     src: url('../fonts/merriweather/2.002/subset/Merriweather-Italic.woff2') format('woff2'),
         url('../fonts/merriweather/2.002/subset/Merriweather-Italic.woff') format('woff');
     font-style: italic;
+    font-display: swap;
 }
 
 /* @font-face { */
@@ -246,6 +256,7 @@
     font-family: 'Libre Baskerville';
     src: url('../fonts/libre-baskerville/2012/subset/LibreBaskerville-Regular.woff2') format('woff2'),
         url('../fonts/libre-baskerville/2012/subset/LibreBaskerville-Regular.woff') format('woff');
+    font-display: swap;
 }
 
 /* @font-face { */
@@ -261,6 +272,7 @@
     src: url('../fonts/andada/2013/subset/Andada-Italic.woff2') format('woff2'),
         url('../fonts/andada/2013/subset/Andada-Italic.woff') format('woff');
     font-style: italic;
+    font-display: swap;
 }
 
 /* @font-face { */
@@ -276,6 +288,7 @@
     font-family: 'Symbola';
     src: url('../fonts/symbola/v11.0/subset/Symbola.woff2') format('woff2'),
         url('../fonts/symbola/v11.0/subset/Symbola.woff') format('woff');
+    font-display: swap;
 }
 
 /* *** Interrobang (Use Iosevka for ‽) */
@@ -284,6 +297,7 @@
     src: url('../fonts/iosevka/1.14.1/subset/iosevka-ss08-regular.woff2') format('woff2'),
         url('../fonts/iosevka/1.14.1/subset/iosevka-ss08-regular.woff') format('woff');
     unicode-range: U+203d;
+    font-display: swap;
 }
 
 
