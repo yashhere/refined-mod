@@ -15,14 +15,14 @@
 
         <!-- Enable HTTP/2 Push -->
         <link rel="preload" href="{{ $globalMJ_JS.RelPermalink }}?{{ now.Unix }}" as="script">
-        <script src="{{ $globalMJ_JS.RelPermalink }}?{{ now.Unix }}"></script>
+        <script defer src="{{ $globalMJ_JS.RelPermalink }}?{{ now.Unix }}"></script>
     {{ else }}
         {{ $mathjaxJS := slice $jqeury $navbarJS $faJS $mathjaxJS $mathjaxConfig $fragmentionJS  $main | resources.Concat "js/global.js" }}
         {{ $globalMJ_JS := $mathjaxJS | resources.Minify | resources.Fingerprint }}
 
         <!-- Enable HTTP/2 Push -->
         <link rel="preload" href="{{ $globalMJ_JS.RelPermalink }}" as="script" integrity="{{ $globalMJ_JS.Data.Integrity }}">
-        <script src="{{ $globalMJ_JS.RelPermalink }}" integrity="{{ $globalMJ_JS.Data.Integrity }}"></script>
+        <script defer src="{{ $globalMJ_JS.RelPermalink }}" integrity="{{ $globalMJ_JS.Data.Integrity }}"></script>
     {{ end }}
 
 {{ else }}
@@ -32,27 +32,26 @@
 
         <!-- Enable HTTP/2 Push -->
         <link rel="preload" href="{{ $globalJS.RelPermalink }}?{{ now.Unix }}" as="script">
-        <script src="{{ $globalJS.RelPermalink }}?{{ now.Unix }}"></script>
+        <script defer src="{{ $globalJS.RelPermalink }}?{{ now.Unix }}"></script>
     {{ else }}
         {{ $defaultJS := slice $jqeury $navbarJS $faJS $fragmentionJS  $main | resources.Concat "js/global.js" }}
         {{ $globalJS := $defaultJS | resources.Minify | resources.Fingerprint }}
 
         <!-- Enable HTTP/2 Push -->
         <link rel="preload" href="{{ $globalJS.RelPermalink }}" as="script" integrity="{{ $globalJS.Data.Integrity }}">
-        <script src="{{ $globalJS.RelPermalink }}" integrity="{{ $globalJS.Data.Integrity }}"></script>
+        <script defer src="{{ $globalJS.RelPermalink }}" integrity="{{ $globalJS.Data.Integrity }}"></script>
     {{ end }}
 {{ end }}
 
 {{ if ($.Scratch.Get "photoswipeloaded") }}
-    <link rel="preload" href="{{ $photoswipeJS.RelPermalink }}" as="script">
-    <script src="{{ $photoswipeJS.RelPermalink }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js" integrity="sha256-PWHOlUzc96pMc8ThwRIXPn8yH4NOLu42RQ0b9SpnpFk=" crossorigin="anonymous"></script>
+    <link rel="preload" href="{{ $photoswipeJS.RelPermalink }}" as="script" integrity="{{ $photoswipeJS.Data.Integrity }}">
+    <script defer src="{{ $photoswipeJS.RelPermalink }}" integrity="{{ $photoswipeJS.Data.Integrity }}"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc=" crossorigin="anonymous"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js" integrity="sha256-PWHOlUzc96pMc8ThwRIXPn8yH4NOLu42RQ0b9SpnpFk=" crossorigin="anonymous"></script>
 {{ end }}
 
 {{ $redirection := resources.Get "js/redirection.js" | minify | fingerprint}}
-<link rel="preload" href="{{ $redirection.RelPermalink }}" as="script">
-<script src="{{ $redirection.RelPermalink }}"></script>
+<script integrity="{{ $redirection.Data.Integrity }}">{{ $redirection.Content | safeJS }}</script>
 
 {{ with site.Params.custom_js }}
     {{ range site.Params.custom_js }}
@@ -63,14 +62,14 @@
                 <script src="{{ $resource.RelPermalink }}?{{ now.Unix }}"></script>
             {{ else }}
                 {{ $js := $resource | minify | fingerprint }}
-                <link rel="preload" href="{{ $js.RelPermalink }}" as="script">
-                <script src="{{ $js.RelPermalink }}"></script>
+                <link rel="preload" href="{{ $js.RelPermalink }}" as="script" integrity="{{ $js.Data.Integrity }}">
+                <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
             {{ end }}
     {{ end }}
 {{ end }}
 
-<!-- Init responsive-nav.js -->
-<!-- https://report-uri.com/home/hash/
-     'sha256-AICaU7ez1zEahkwGOinOvyDtJHKvnJAO607ClgXh4xg='
--->
-<script>var nav=responsiveNav("#nav");</script>
+<script>
+     // Init responsive-nav.js
+     // https://report-uri.com/home/hash/'sha256-AICaU7ez1zEahkwGOinOvyDtJHKvnJAO607ClgXh4xg='
+    var nav=responsiveNav("#nav");
+</script>
