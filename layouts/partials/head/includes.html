@@ -3,7 +3,7 @@
 
 {{ with .Param "prefetch" }}
     {{ range .fonts }}
-        {{ printf `<link rel="preload" href="%s" as="font">` . | safeHTML }}
+        {{ printf `<link rel="preload" href="%s" as="font" crossorigin>` . | safeHTML }}
     {{ end }}
 {{ end }}
 
