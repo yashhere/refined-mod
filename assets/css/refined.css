@@ -333,7 +333,7 @@ body {
 
 body {
     color: var(--grey);
-    background-color: #fff;
+    background-color: #fefefe;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 }
@@ -2758,7 +2758,7 @@ div.note p {
 
 /* Fragmentioner - https://github.com/kartikprabhu/fragmentioner */
 #fragmentioner-ui {
-    font-family: var(--tertiary-font);
+    font-family: var(--body-font);
     position: absolute;
     top: -100%;
     background: #111;

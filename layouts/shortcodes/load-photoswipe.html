@@ -23,8 +23,6 @@ Documentation and licence at https://github.com/liwenyip/hugo-easy-gallery/
 
     {{ $photoswipe_css := resources.Get "css/photoswipe.css" | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $photoswipe_css.RelPermalink }}">
-    <!-- Enable HTTP/2 Push -->
-    <link rel="preload" href="{{ $photoswipe_css.RelPermalink }}" as="style">
 
     <!-- these files are loaded in the theme footer
     <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc=" crossorigin="anonymous"></script>
