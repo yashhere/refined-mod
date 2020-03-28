@@ -155,3 +155,34 @@ img[src$='#floatright'] {
     /* Above is a short hand for the below explicit content specification,
            though you lose the control on letter casing. */
 }
+
+
+/* Rating System */
+.rating-center {
+    margin-bottom: 3%;
+    text-align: center;
+}
+
+.Stars {
+    --star-size: 30px;
+    --percent: calc(var(--rating) / 5 * 100%);
+
+    margin-left: auto;
+    margin-right: auto;
+
+    display: inline-block;
+    font-size: var(--star-size);
+    font-family: Times;
+    line-height: 1;
+}
+
+.Stars::before {
+    --star-color: #000;
+    --star-background: #fc0;
+
+    content: "★★★★★";
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
