@@ -33,20 +33,15 @@
     <style>{{ partialCached "debugprint.css" . | safeCSS }}</style>    <!-- from submodule -->
 {{ end }}
 
-{{ $refined_css := resources.Get "css/refined.css" | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $refined_css.RelPermalink }}">
-<!-- Enable HTTP/2 Push -->
-<link rel="preload" href="{{ $refined_css.RelPermalink }}" as="style">
+{{ $refined_css := resources.Get "css/refined.css" | resources.ExecuteAsTemplate "css/refined.css" . }}
 
-{{ $fragmentioner_css := resources.Get "css/fragmentioner.css" | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $fragmentioner_css.RelPermalink }}">
+{{ $fragmentioner_css := resources.Get "css/fragmentioner.css" | resources.ExecuteAsTemplate "css/fragmentioner.css" . }}
 
 <!-- check photoswipe css in load-photoswipe shortcode -->
 
-{{ $highlight_css := resources.Get "css/github_croma.css" | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $highlight_css.RelPermalink }}">
+{{ $highlight_css := resources.Get "css/github_croma.css" | resources.ExecuteAsTemplate "css/github_croma.css" . }}
 
-{{ $improvements_css := resources.Get "css/improvements.css" | minify | fingerprint }}
-<link rel="stylesheet" href="{{ $improvements_css.RelPermalink }}">
-<!-- Enable HTTP/2 Push -->
-<link rel="preload" href="{{ $improvements_css.RelPermalink }}" as="style">
+{{ $improvements_css := resources.Get "css/improvements.css" | resources.ExecuteAsTemplate "css/improvements.css" . }}
+
+{{ $styles := slice $refined_css $fragmentioner_css $highlight_css $improvements_css | resources.Concat "styles.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}" {{ printf "integrity=%q" $styles.Data.Integrity | safeHTMLAttr }}>
