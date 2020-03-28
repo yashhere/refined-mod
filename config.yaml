@@ -35,9 +35,9 @@ Params:
     refined: "https://gitlab.com/kaushalmodi/hugo-theme-refined"
     refined_modified: "https://github.com/yashhere/refined-mod"
     hugo: "https://github.com/gohugoio/hugo"
-  # prefetch:
-  #   fonts:
-  #     - /fonts/libre-baskerville/2012/subset/LibreBaskerville-Regular.woff2
-  #     - /fonts/iosevka/1.14.1/subset/iosevka-ss08-regular.woff2
-  #     - /fonts/linux-libertine/5.3.0/subset/LinBiolinum_Rah.woff2
-  #     - /fonts/source-sans-pro/2.020R-ro-1.075R-it/subset/SourceSansPro-Regular.woff2
+  prefetch:
+    fonts:
+      - /fonts/libre-baskerville/2012/subset/LibreBaskerville-Regular.woff2
+      - /fonts/iosevka/1.14.1/subset/iosevka-ss08-regular.woff2
+      - /fonts/linux-libertine/5.3.0/subset/LinBiolinum_Rah.woff2
+      - /fonts/source-sans-pro/2.020R-ro-1.075R-it/subset/SourceSansPro-Regular.woff2
