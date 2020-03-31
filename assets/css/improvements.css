@@ -186,3 +186,10 @@ img[src$='#floatright'] {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+/*MathJax*/
+code.has-jax {font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+}
