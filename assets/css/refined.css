@@ -834,11 +834,11 @@ h6 .section-num {
 /* ** Post-fix "notes" to Notes headings in summaries, post singles */
 .post.notes h1::after,
 .summary.notes h2 a::after {
-    font-size: 0.9em;
+    font-size: 0.5em;
     content: "notes";
     padding: 2px 5px 2px 5px;
     /* top, right, bottom, left */
-    vertical-align: 0.05em;
+    vertical-align: 0.3em;
     margin-left: 5px;
 }
 
@@ -848,6 +848,27 @@ h6 .section-num {
 }
 
 .summary.notes h2 a::after {
+    background: var(--theme-color);
+    color: white;
+}
+
+/* ** Post-fix "readings" to Readings headings in summaries, post singles */
+.post.readings h1::after,
+.summary.readings h2 a::after {
+    font-size: 0.5em;
+    content: "readings";
+    padding: 2px 5px 2px 5px;
+    /* top, right, bottom, left */
+    vertical-align: 0.3em;
+    margin-left: 5px;
+}
+
+.post.readings h1::after {
+    background: var(--grey-2);
+    color: white;
+}
+
+.summary.readings h2 a::after {
     background: var(--theme-color);
     color: white;
 }
