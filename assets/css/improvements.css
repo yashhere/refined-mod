@@ -18,6 +18,14 @@ a::selection {
     color: #0645ad;
 }
 
+a {
+    border-bottom-width: 0.05em;
+    border-bottom-color: var(--theme-color);
+}
+
+a:hover {
+    border-bottom-color: var(--grey);
+}
 
 p>code {
     font-family: 'Inconsolata', monospace;

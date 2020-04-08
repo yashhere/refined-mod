@@ -73,7 +73,6 @@
 
     {{ partial "extras/jump" }}
 
-    {{ if or (eq .Section "posts") (eq .Section "readings") (eq .Section "notes") }}
         {{ if not .Params.notoc }} <!-- This ToC is rendered in the right sidebar only for wide screens .-->
         {{ with .TableOfContents }}
             <div class="hugotoc no-text-decoration">
@@ -82,27 +81,9 @@
             </div>
         {{ end }}
         {{ end }}
-    {{ end }}
 
     <!-- Back to top -->
     <div class="backtotop center no-text-decoration">
         <a href="#">back to <span class="top">top</span></a>
     </div>
-
-    {{ if or (eq .Section "posts") (eq .Section "readings") (eq .Section "notes") }}
-        <!-- Tags/categories -->
-        <div class="right">{{ partial "taxonomy/taxo-buttons" . }}</div>
-        <div class="clear-float"></div>
-
-        <!-- Prev/next post -->
-        {{ partial "footer/prev_next" . }}
-
-        <a id="bottom"></a>
-        <!-- Send/receive Webmentions -->
-        {{ partial "footer/webmention_send" . }}
-        {{ partial "footer/webmention_rcv" . }}
-
-        <!-- Other Comments -->
-        {{ partial "entry/comments" . }}
-    {{ end }}
 {{ end }}
