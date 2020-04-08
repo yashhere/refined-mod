@@ -207,16 +207,15 @@ a .microblog:hover {
 
 /* Book showcase */
 .now-boxes {
-    text-align: center;
     margin-bottom: 2em;
     margin-top: 3em;
 }
 
-.now-boxes h2::before {
+.now-boxes h4::before {
     content: none;
 }
 
-.now-boxes h2 {
+.now-boxes h4 {
     margin-bottom: 1.5em;
 }
 .box {
@@ -271,11 +270,11 @@ a .microblog:hover {
     text-align: center;
 }
 
-.card .details h2::before {
+.card .details h4::before {
     content: none;
 }
 
-.card .details h2 {
+.card .details h4 {
     margin: 0;
     padding: 0;
     font-weight: 600;

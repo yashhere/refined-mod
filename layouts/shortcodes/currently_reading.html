@@ -2,7 +2,7 @@
 {{ $data := getJSON $url }}
 
 <div class="now-boxes">
-    <h2>Currently Reading</h2>
+    <h4>Currently Reading</h4>
     <div class="box">
 
         {{if ( not $data ) }}
@@ -15,7 +15,7 @@
                     <img src="{{$book.image_url}}" alt="{{ $book.title }}">
                 </div>
                 <div class="details">
-                    <h2>{{ $book.title }}</h2>
+                    <h4>{{ $book.title }}</h4>
                 </div>
             </div>
             {{ end }}

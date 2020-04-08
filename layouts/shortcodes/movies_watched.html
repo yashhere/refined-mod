@@ -2,7 +2,7 @@
 {{ $data := getJSON $url }}
 
 <div class="now-boxes">
-    <h2>Movies Watched this month</h2>
+    <h4>Movies Watched this month</h4>
     <div class="box">
         {{if ( not $data ) }}
             <p>I am yet to watch a movie this month!!</p>
@@ -14,7 +14,7 @@
                         <img src="{{ $movie.image }}" alt="{{ $movie.title }}">
                     </div>
                     <div class="details">
-                        <h2>{{ $movie.watched_date }}</h2>
+                        <h4>{{ $movie.watched_date }}</h4>
                         <div class="rating-center">
                             <div class="Stars" style="--rating: {{ $movie.rating }};" aria-label="Rating of this book is {{ $movie.rating }} out of 5."></div>
                         </div>
