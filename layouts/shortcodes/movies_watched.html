@@ -1,12 +1,11 @@
 {{ $url := "/data/letterboxd.json" }}
 {{ $data := getJSON $url }}
 
+{{if $data }}
 <div class="now-boxes">
     <h4>Movies Watched this month</h4>
     <div class="box">
-        {{if ( not $data ) }}
-            <p>I am yet to watch a movie this month!!</p>
-        {{ else }}
+        <p>I am yet to watch a movie this month!!</p>
             {{ range getJSON $url }}
                 {{ $movie := . }}
                 <div class="card">
@@ -21,6 +20,6 @@
                     </div>
                 </div>
             {{ end }}
-        {{ end }}
     </div>
 </div>
+{{ end }}

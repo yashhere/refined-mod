@@ -288,3 +288,30 @@ a .microblog:hover {
     font-weight: 600;
     font-size: 1em;
 }
+
+
+/* Progress bar */
+.books {
+    -webkit-font-smoothing: antialiased;
+}
+
+.books h4::before {
+    content: none;
+}
+
+.books h4 {
+    text-transform: uppercase;
+}
+
+.books a {
+    text-decoration: none;
+    padding: 2px 7px;
+}
+
+.books .progress {
+    margin-top: -0.6em;
+}
+
+.books .passive {
+    color: #bbbdbd;
+}
