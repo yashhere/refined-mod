@@ -12,6 +12,8 @@
 </div>
 
 {{ if (eq 1 .Paginator.PageNumber) }}
-    <!-- Receive Webmentions -->
-    {{ partial "footer/webmention_rcv" . }}
+    {{ if not .Site.IsServer }}
+            <!-- Receive Webmentions -->
+        {{ partial "footer/webmention_rcv" . }}
+    {{ end }}
 {{ end }}

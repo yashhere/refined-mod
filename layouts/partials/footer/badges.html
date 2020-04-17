@@ -35,14 +35,16 @@
             {{ printf `<a href="https://xn--sr8hvo.ws/%s/next">→</a>` . | safeHTML }}
         {{ end }}
 
-        {{ with .webmention }}
-            <a href="https://indieweb.org/Webmention">
-                {{ $img := resources.Get "images/webmention-badge--optimized.png" | fingerprint }}
-                <img src="{{ $img.RelPermalink }}"
-                     width={{ $badge_width }} height={{ $badge_height }}
-                     alt="Webmention" class="pixelated">
-            </a>
-        {{ end }}
+        {{ if not .Site.IsServer }}
+            {{ with .webmention }}
+                <a href="https://indieweb.org/Webmention">
+                    {{ $img := resources.Get "images/webmention-badge--optimized.png" | fingerprint }}
+                    <img src="{{ $img.RelPermalink }}"
+                         width={{ $badge_width }} height={{ $badge_height }}
+                         alt="Webmention" class="pixelated">
+                </a>
+            {{ end }}
+        {{end}}
     {{ end }}
 
     {{ with site.Params.html5_validator }}
